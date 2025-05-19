@@ -11,7 +11,7 @@ const Achievements: React.FC = () => {
   const countersRef = useRef<HTMLDivElement>(null);
   const countersAnimated = useRef(false);
   
-  const achievements: Achievement[] = [
+    const achievements: Achievement[] = [
     {
       title: "Data Migration Efficiency",
       value: 25,
@@ -41,6 +41,12 @@ const Achievements: React.FC = () => {
       value: 30,
       suffix: "%",
       description: "Via optimized data services"
+    },
+    {
+      title: "Cloud Cost Optimization",
+      value: 15,
+      suffix: "%",
+      description: "Achieved through efficient resource allocation"
     }
   ];
 

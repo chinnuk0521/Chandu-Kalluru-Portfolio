@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Calendar, MapPin, Briefcase } from 'lucide-react';
+import React, { useState } from "react";
+import { Calendar, MapPin, Briefcase } from "lucide-react";
 
 type ExperienceItem = {
   title: string;
@@ -17,7 +17,7 @@ const Experience: React.FC = () => {
   const experiences: ExperienceItem[] = [
     {
       title: "Project Associate - Research & Development",
-      company: "Indian Institute of Technology, Madras",
+      company: "Indian Institute of Technology, Madras (CyStar Lab)",
       location: "Chennai, Tamil Nadu, India",
       period: "January 2025 - Present",
       type: "Full-time",
@@ -26,9 +26,15 @@ const Experience: React.FC = () => {
         "Design and deploy Smart Contracts for enterprise use cases.",
         "Implement cryptographic techniques for data integrity and security.",
         "Mentor 4 interns across different Blockchain Research Projects.",
-        "Collaborate with Cross-Functional Teams to develop innovative solutions."
+        "Collaborate with Cross-Functional Teams to develop innovative solutions.",
       ],
-      skills: ["Blockchain", "DLTs", "Smart Contracts", "Cryptography", "Hedera Hashgraph"]
+      skills: [
+        "Blockchain",
+        "DLTs",
+        "Smart Contracts",
+        "Cryptography",
+        "Hedera Hashgraph",
+      ],
     },
     {
       title: "Power BI Developer",
@@ -41,9 +47,9 @@ const Experience: React.FC = () => {
         "Integrated multiple data sources, including SQL databases, Excel, and cloud platforms.",
         "Created custom DAX measures to enhance analytical capabilities and deliver accurate insights.",
         "Optimized data models and reports for performance efficiency and seamless user experience.",
-        "Automated reporting processes, reducing manual effort and enhancing real-time decision-making."
+        "Automated reporting processes, reducing manual effort and enhancing real-time decision-making.",
       ],
-      skills: ["Power BI", "DAX", "Data Modeling", "ETL", "Data Visualization"]
+      skills: ["Power BI", "DAX", "Data Modeling", "ETL", "Data Visualization"],
     },
     {
       title: "Software Engineer",
@@ -56,17 +62,19 @@ const Experience: React.FC = () => {
         "Designed and optimized ETL pipelines and performed data transformation and validation.",
         "Improved business processes by 20% and reduced system downtime by 30%.",
         "Managed deployments using Git, Bitbucket, and SourceTree.",
-        "Built backend services and integrated databases (Microsoft SQL Server)."
+        "Built backend services and integrated databases (Microsoft SQL Server).",
       ],
-      skills: ["JavaScript", "Python", "SQL", "ETL", "Git", "Bitbucket"]
-    }
+      skills: ["JavaScript", "Python", "SQL", "ETL", "Git", "Bitbucket"],
+    },
   ];
 
   return (
     <section id="experience" className="py-20 bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Professional Experience</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Professional Experience
+          </h2>
           <div className="w-24 h-1 bg-blue-500 mx-auto"></div>
         </div>
 
@@ -79,9 +87,9 @@ const Experience: React.FC = () => {
                     key={index}
                     onClick={() => setActiveTab(index)}
                     className={`block w-full text-left px-6 py-4 transition-colors ${
-                      activeTab === index 
-                        ? 'bg-blue-600 text-white' 
-                        : 'text-gray-300 hover:bg-gray-700'
+                      activeTab === index
+                        ? "bg-blue-600 text-white"
+                        : "text-gray-300 hover:bg-gray-700"
                     }`}
                   >
                     <p className="font-medium">{exp.title}</p>
@@ -95,12 +103,18 @@ const Experience: React.FC = () => {
           <div className="md:col-span-9">
             <div className="bg-gray-900 p-8 rounded-lg">
               {experiences.map((exp, index) => (
-                <div 
-                  key={index} 
-                  className={`transition-opacity duration-300 ${activeTab === index ? 'block opacity-100' : 'hidden opacity-0'}`}
+                <div
+                  key={index}
+                  className={`transition-opacity duration-300 ${
+                    activeTab === index
+                      ? "block opacity-100"
+                      : "hidden opacity-0"
+                  }`}
                 >
                   <div className="mb-6">
-                    <h3 className="text-2xl font-semibold text-blue-400">{exp.title}</h3>
+                    <h3 className="text-2xl font-semibold text-blue-400">
+                      {exp.title}
+                    </h3>
                     <p className="text-xl text-gray-300">{exp.company}</p>
                   </div>
 
@@ -120,7 +134,9 @@ const Experience: React.FC = () => {
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="text-lg font-medium mb-3 text-gray-200">Responsibilities & Achievements</h4>
+                    <h4 className="text-lg font-medium mb-3 text-gray-200">
+                      Responsibilities & Achievements
+                    </h4>
                     <ul className="space-y-2 text-gray-300">
                       {exp.description.map((item, idx) => (
                         <li key={idx} className="flex items-start">
@@ -132,11 +148,13 @@ const Experience: React.FC = () => {
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-medium mb-3 text-gray-200">Key Skills</h4>
+                    <h4 className="text-lg font-medium mb-3 text-gray-200">
+                      Key Skills
+                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {exp.skills.map((skill, idx) => (
-                        <span 
-                          key={idx} 
+                        <span
+                          key={idx}
                           className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm"
                         >
                           {skill}

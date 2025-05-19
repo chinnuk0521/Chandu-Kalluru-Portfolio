@@ -1,28 +1,32 @@
-import React from 'react';
-import { BookOpen, Code, Database, Network } from 'lucide-react';
+import React from "react";
+import { BookOpen, Code, Database, Network } from "lucide-react";
 
 const About: React.FC = () => {
   const expertiseAreas = [
     {
       icon: <Network size={24} />,
       title: "Blockchain Technology",
-      description: "Research and development in blockchain technologies, smart contracts, and decentralized applications."
+      description:
+        "Research and development in blockchain technologies, smart contracts, and decentralized applications.",
     },
     {
       icon: <Database size={24} />,
       title: "Data Visualization",
-      description: "Creating interactive dashboards and reports using Power BI with advanced DAX calculations."
+      description:
+        "Creating interactive dashboards and reports using Power BI with advanced DAX calculations.",
     },
     {
       icon: <Code size={24} />,
       title: "Software Engineering",
-      description: "Developing scalable applications with JavaScript, React, Python, and database integration."
+      description:
+        "Developing scalable applications with JavaScript, React, Python, and database integration.",
     },
     {
       icon: <BookOpen size={24} />,
       title: "Research & Innovation",
-      description: "Exploring advancements in DLTs and their practical applications in enterprise solutions."
-    }
+      description:
+        "Exploring advancements in DLTs and their practical applications in enterprise solutions.",
+    },
   ];
 
   return (
@@ -39,25 +43,34 @@ const About: React.FC = () => {
               Research & Development Innovator at IIT Madras
             </h3>
             <p className="text-gray-300 mb-6">
-              As a Project Associate in the CSE department at IIT Madras, I focus on blockchain technology 
-              and distributed ledger technologies (DLTs), contributing to innovative solutions that enhance 
-              security, transparency, and efficiency in data management.
+              As a Project Associate in the CSE department at IIT Madras, I work
+              in the
+              <strong>
+                {" "}
+                Centre for Cybersecurity, Trust and Reliability (CyStar) lab
+              </strong>
+              . My focus is on blockchain technology and distributed ledger
+              technologies (DLTs), contributing to innovative solutions that
+              enhance security, transparency, and efficiency in data management.
             </p>
             <p className="text-gray-300 mb-6">
-              My work involves researching and developing blockchain-based applications that optimize complex 
-              business processes, implementing smart contracts, and ensuring data integrity through cryptographic techniques.
+              My work involves researching and developing blockchain-based
+              applications that optimize complex business processes,
+              implementing smart contracts, and ensuring data integrity through
+              cryptographic techniques.
             </p>
             <p className="text-gray-300">
-              With a strong foundation in software engineering and hands-on experience in both Salesforce and 
-              blockchain technologies, I excel at translating complex business requirements into scalable, 
+              With a strong foundation in software engineering and hands-on
+              experience in both Salesforce and blockchain technologies, I excel
+              at translating complex business requirements into scalable,
               user-friendly solutions.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {expertiseAreas.map((area, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="bg-gray-700 p-6 rounded-lg hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
               >
                 <div className="bg-blue-500/20 p-3 rounded-full inline-block mb-4 text-blue-400">

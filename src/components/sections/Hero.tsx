@@ -30,13 +30,13 @@ const Hero: React.FC = () => {
 
     const particles: Particle[] = [];
     const particleCount = Math.min(50, Math.floor(rect.width / 20));
-    const connectionDistance = 100;
+    const connectionDistance = 150;
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * rect.width,
         y: Math.random() * rect.height,
-        size: Math.random() * 3 + 1,
+        size: Math.random() * 5 + 2,
         speed: Math.random() * 0.5 + 0.1,
         alpha: Math.random() * 0.5 + 0.1,
         connection: null
