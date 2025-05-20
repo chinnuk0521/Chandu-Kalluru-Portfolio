@@ -123,11 +123,16 @@ const Skills: React.FC = () => {
                 <span className="ml-2">{skillCategories[activeCategory].name}</span>
               </h3>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
                 {skillCategories[activeCategory].skills.map((skill, index) => (
-                  <div key={index} className="flex flex-col items-center">
-                    {skill.icon}
-                    <span className="mt-2 text-gray-300">{skill.name}</span>
+                  <div 
+                    key={index} 
+                    className="flex flex-col items-center justify-center bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors"
+                    title={skill.name}
+                  >
+                    <div className="text-blue-400">
+                      {skill.icon}
+                    </div>
                   </div>
                 ))}
               </div>
