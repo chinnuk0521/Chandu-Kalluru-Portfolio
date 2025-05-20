@@ -1,51 +1,100 @@
 import React, { useState } from 'react';
-
-type Skill = {
-  name: string;
-  iconUrl: string;
-};
+import { 
+  Code, Database, Server, 
+  Hash, BarChart2, Wrench, 
+  GitBranch, Briefcase 
+} from 'lucide-react';
 
 type SkillCategory = {
   name: string;
   icon: React.ReactNode;
-  skills: Skill[];
+  skills: {
+    name: string;
+    level: number;
+  }[];
 };
 
 const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState(0);
-
+  
   const skillCategories: SkillCategory[] = [
     {
       name: "Programming",
-      icon: <i className="fas fa-code"></i>,
+      icon: <Code className="mr-2" size={20} />,
       skills: [
-        { name: "Python", iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons/icons/python.svg" },
-        { name: "React", iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons/icons/react.svg" },
-        { name: "JavaScript", iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons/icons/javascript.svg" },
-        { name: "TypeScript", iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons/icons/typescript.svg" },
-      ],
+        { name: "Python", level: 80 },
+        { name: "React", level: 85 },
+        { name: "JavaScript", level: 90 },
+        { name: "TypeScript", level: 85 },
+        { name: "Solidity", level: 75 },
+        { name: "HTML5", level: 85 },
+        { name: "CSS3", level: 85 },
+        { name: "SQL", level: 80 }
+      ]
     },
     {
       name: "Blockchain",
-      icon: <i className="fas fa-lock"></i>,
+      icon: <Hash className="mr-2" size={20} />,
       skills: [
-        { name: "Smart Contracts", iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons/icons/ethereum.svg" },
-        { name: "Cryptography", iconUrl: "https://cdn.jsdelivr.net/npm/simple-icons/icons/bitcoin.svg" },
-      ],
+        { name: "Smart Contracts", level: 85 },
+        { name: "Cryptography", level: 80 },
+        { name: "Hedera Hashgraph", level: 75 },
+        { name: "DLTs", level: 85 }
+      ]
     },
-    // Add more categories as needed
+    {
+      name: "Business Intelligence",
+      icon: <BarChart2 className="mr-2" size={20} />,
+      skills: [
+        { name: "Power BI", level: 90 },
+        { name: "DAX", level: 85 },
+        { name: "Data Modeling", level: 80 },
+        { name: "ETL", level: 75 }
+      ]
+    },
+    {
+      name: "Tools",
+      icon: <Wrench className="mr-2" size={20} />,
+      skills: [
+        { name: "Git", level: 85 },
+        { name: "Postman", level: 80 },
+        { name: "JIRA", level: 75 },
+        { name: "Google Cloud", level: 70 },
+        { name: "Project IDX", level: 75 },
+        { name: "Beyond Compare", level: 70 },
+        { name: "Microsoft Office", level: 80 }
+      ]
+    },
+    {
+      name: "Version Control",
+      icon: <GitBranch className="mr-2" size={20} />,
+      skills: [
+        { name: "Bitbucket", level: 80 },
+        { name: "SourceTree", level: 75 },
+        { name: "AWS CodePipeline", level: 70 }
+      ]
+    },
+    {
+      name: "Methodologies",
+      icon: <Briefcase className="mr-2" size={20} />,
+      skills: [
+        { name: "Agile", level: 85 },
+        { name: "SDLC", level: 80 },
+        { name: "TDD", level: 75 },
+        { name: "Object-Oriented Design", level: 80 }
+      ]
+    }
   ];
 
   return (
     <section id="skills" className="py-20 bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Skills & Expertise</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills & Expertise</h2>
           <div className="w-24 h-1 bg-blue-500 mx-auto"></div>
         </div>
-
+        
         <div className="grid md:grid-cols-12 gap-8">
-          {/* Sidebar */}
           <div className="md:col-span-3">
             <div className="sticky top-24">
               <div className="bg-gray-800 rounded-lg overflow-hidden">
@@ -60,33 +109,33 @@ const Skills: React.FC = () => {
                     }`}
                   >
                     {category.icon}
-                    <span className="ml-2">{category.name}</span>
+                    {category.name}
                   </button>
                 ))}
               </div>
             </div>
           </div>
-
-          {/* Skills Display */}
+          
           <div className="md:col-span-9">
             <div className="bg-gray-800 p-8 rounded-lg">
               <h3 className="text-2xl font-semibold mb-6 text-blue-400 flex items-center">
                 {skillCategories[activeCategory].icon}
                 <span className="ml-2">{skillCategories[activeCategory].name}</span>
               </h3>
-
-              <div className="flex flex-wrap gap-6">
+              
+              <div className="space-y-6">
                 {skillCategories[activeCategory].skills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col items-center w-24 h-24 bg-gray-700 rounded-full shadow-lg hover:shadow-blue-500/50 transition-transform transform hover:scale-110"
-                  >
-                    <img
-                      src={skill.iconUrl}
-                      alt={skill.name}
-                      className="w-12 h-12 mt-4"
-                    />
-                    <p className="text-sm text-gray-300 mt-2">{skill.name}</p>
+                  <div key={index}>
+                    <div className="flex justify-between mb-2">
+                      <span className="font-medium">{skill.name}</span>
+                      <span className="text-gray-400">{skill.level}%</span>
+                    </div>
+                    <div className="h-2 w-full bg-gray-700 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
+                        style={{ width: `${skill.level}%`, transition: 'width 1s ease-in-out' }}
+                      ></div>
+                    </div>
                   </div>
                 ))}
               </div>
