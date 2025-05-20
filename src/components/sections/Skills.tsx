@@ -10,7 +10,7 @@ type SkillCategory = {
   icon: React.ReactNode;
   skills: {
     name: string;
-    level: number;
+    icon: React.ReactNode;
   }[];
 };
 
@@ -22,66 +22,66 @@ const Skills: React.FC = () => {
       name: "Programming",
       icon: <Code className="mr-2" size={20} />,
       skills: [
-        { name: "Python", level: 80 },
-        { name: "React", level: 85 },
-        { name: "JavaScript", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "Solidity", level: 75 },
-        { name: "HTML5", level: 85 },
-        { name: "CSS3", level: 85 },
-        { name: "SQL", level: 80 }
+        { name: "Python", icon: <Code size={24} /> },
+        { name: "React", icon: <Code size={24} /> },
+        { name: "JavaScript", icon: <Code size={24} /> },
+        { name: "TypeScript", icon: <Code size={24} /> },
+        { name: "Solidity", icon: <Code size={24} /> },
+        { name: "HTML5", icon: <Code size={24} /> },
+        { name: "CSS3", icon: <Code size={24} /> },
+        { name: "SQL", icon: <Database size={24} /> }
       ]
     },
     {
       name: "Blockchain",
       icon: <Hash className="mr-2" size={20} />,
       skills: [
-        { name: "Smart Contracts", level: 85 },
-        { name: "Cryptography", level: 80 },
-        { name: "Hedera Hashgraph", level: 75 },
-        { name: "DLTs", level: 85 }
+        { name: "Smart Contracts", icon: <Hash size={24} /> },
+        { name: "Cryptography", icon: <Hash size={24} /> },
+        { name: "Hedera Hashgraph", icon: <Hash size={24} /> },
+        { name: "DLTs", icon: <Hash size={24} /> }
       ]
     },
     {
       name: "Business Intelligence",
       icon: <BarChart2 className="mr-2" size={20} />,
       skills: [
-        { name: "Power BI", level: 90 },
-        { name: "DAX", level: 85 },
-        { name: "Data Modeling", level: 80 },
-        { name: "ETL", level: 75 }
+        { name: "Power BI", icon: <BarChart2 size={24} /> },
+        { name: "DAX", icon: <BarChart2 size={24} /> },
+        { name: "Data Modeling", icon: <BarChart2 size={24} /> },
+        { name: "ETL", icon: <BarChart2 size={24} /> }
       ]
     },
     {
       name: "Tools",
       icon: <Wrench className="mr-2" size={20} />,
       skills: [
-        { name: "Git", level: 85 },
-        { name: "Postman", level: 80 },
-        { name: "JIRA", level: 75 },
-        { name: "Google Cloud", level: 70 },
-        { name: "Project IDX", level: 75 },
-        { name: "Beyond Compare", level: 70 },
-        { name: "Microsoft Office", level: 80 }
+        { name: "Git", icon: <GitBranch size={24} /> },
+        { name: "Postman", icon: <Wrench size={24} /> },
+        { name: "JIRA", icon: <Wrench size={24} /> },
+        { name: "Google Cloud", icon: <Server size={24} /> },
+        { name: "Project IDX", icon: <Wrench size={24} /> },
+        { name: "Beyond Compare", icon: <Wrench size={24} /> },
+        { name: "Microsoft Office", icon: <Briefcase size={24} /> }
       ]
     },
     {
       name: "Version Control",
       icon: <GitBranch className="mr-2" size={20} />,
       skills: [
-        { name: "Bitbucket", level: 80 },
-        { name: "SourceTree", level: 75 },
-        { name: "AWS CodePipeline", level: 70 }
+        { name: "Bitbucket", icon: <GitBranch size={24} /> },
+        { name: "SourceTree", icon: <GitBranch size={24} /> },
+        { name: "AWS CodePipeline", icon: <GitBranch size={24} /> }
       ]
     },
     {
       name: "Methodologies",
       icon: <Briefcase className="mr-2" size={20} />,
       skills: [
-        { name: "Agile", level: 85 },
-        { name: "SDLC", level: 80 },
-        { name: "TDD", level: 75 },
-        { name: "Object-Oriented Design", level: 80 }
+        { name: "Agile", icon: <Briefcase size={24} /> },
+        { name: "SDLC", icon: <Briefcase size={24} /> },
+        { name: "TDD", icon: <Briefcase size={24} /> },
+        { name: "Object-Oriented Design", icon: <Briefcase size={24} /> }
       ]
     }
   ];
@@ -123,19 +123,11 @@ const Skills: React.FC = () => {
                 <span className="ml-2">{skillCategories[activeCategory].name}</span>
               </h3>
               
-              <div className="space-y-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {skillCategories[activeCategory].skills.map((skill, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-2">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-gray-400">{skill.level}%</span>
-                    </div>
-                    <div className="h-2 w-full bg-gray-700 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
-                        style={{ width: `${skill.level}%`, transition: 'width 1s ease-in-out' }}
-                      ></div>
-                    </div>
+                  <div key={index} className="flex flex-col items-center">
+                    {skill.icon}
+                    <span className="mt-2 text-gray-300">{skill.name}</span>
                   </div>
                 ))}
               </div>
