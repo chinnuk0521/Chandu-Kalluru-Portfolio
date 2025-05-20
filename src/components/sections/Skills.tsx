@@ -91,16 +91,31 @@ const Skills = () => {
           <div className="w-24 h-1 bg-blue-500 mx-auto"></div>
         </div>
         
-        <div className="grid md:grid-cols-12 gap-8">
-          {/* Category Sidebar */}
-          <div className="md:col-span-3">
+        {/* Mobile View - Dropdown for Categories */}
+        <div className="md:hidden mb-6">
+          <select 
+            className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={activeCategory}
+            onChange={(e) => setActiveCategory(Number(e.target.value))}
+          >
+            {skillCategories.map((category, index) => (
+              <option key={index} value={index}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        
+        <div className="flex flex-col md:flex-row gap-6">
+          {/* Category Sidebar - Hidden on Mobile */}
+          <div className="hidden md:block md:w-1/4 lg:w-1/5">
             <div className="sticky top-24">
               <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
                 {skillCategories.map((category, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveCategory(index)}
-                    className={`flex items-center w-full text-left px-6 py-4 transition-colors ${
+                    className={`flex items-center w-full text-left px-4 py-3 transition-colors ${
                       activeCategory === index
                         ? 'bg-blue-600 text-white'
                         : 'text-gray-300 hover:bg-gray-700'
@@ -109,9 +124,9 @@ const Skills = () => {
                     <img 
                       src={category.iconUrl} 
                       alt={`${category.name} icon`}
-                      className="w-6 h-6 mr-2"
+                      className="w-6 h-6 mr-3 flex-shrink-0"
                     />
-                    {category.name}
+                    <span className="truncate">{category.name}</span>
                   </button>
                 ))}
               </div>
@@ -119,31 +134,31 @@ const Skills = () => {
           </div>
           
           {/* Skills Display */}
-          <div className="md:col-span-9">
-            <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-semibold mb-6 text-blue-400 flex items-center">
+          <div className="flex-1 md:w-3/4 lg:w-4/5">
+            <div className="bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
+              <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-blue-400 flex items-center">
                 <img 
                   src={skillCategories[activeCategory].iconUrl}
                   alt={`${skillCategories[activeCategory].name} icon`}
-                  className="w-8 h-8 mr-3"
+                  className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mr-3"
                 />
                 <span>{skillCategories[activeCategory].name}</span>
               </h3>
               
-              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
                 {skillCategories[activeCategory].skills.map((skill, index) => (
                   <div 
                     key={index} 
-                    className="flex flex-col items-center justify-center bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors shadow-md"
+                    className="flex flex-col items-center justify-center bg-gray-700 p-3 sm:p-4 md:p-5 rounded-lg hover:bg-gray-600 transition-colors shadow-md aspect-square"
                   >
-                    <div className="mb-3">
+                    <div className="mb-2 sm:mb-3 flex items-center justify-center h-10 sm:h-12">
                       <img 
                         src={skill.iconUrl} 
                         alt={`${skill.name} icon`}
-                        className="w-12 h-12"
+                        className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
                       />
                     </div>
-                    <span className="text-white text-center font-medium">{skill.name}</span>
+                    <span className="text-white text-center font-medium text-sm sm:text-base">{skill.name}</span>
                   </div>
                 ))}
               </div>
