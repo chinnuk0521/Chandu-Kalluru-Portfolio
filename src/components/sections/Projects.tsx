@@ -4,6 +4,7 @@ import { ExternalLink } from 'lucide-react';
 type Project = {
   title: string;
   category: string;
+  subCategory?: string;
   description: string;
   image: string;
   tags: string[];
@@ -11,6 +12,7 @@ type Project = {
 
 const Projects: React.FC = () => {
   const [filter, setFilter] = useState<string>('all');
+  const [subFilter, setSubFilter] = useState<string>('all');
   
   const projects: Project[] = [
     {
@@ -35,17 +37,56 @@ const Projects: React.FC = () => {
       tags: ["Power BI", "Data Modeling", "Predictive Analytics"]
     },
     {
-      title: "Salesforce Automation Solutions",
+      title: "Sales Data ETL Pipeline",
+      category: "data",
+      subCategory: "pipeline",
+      description: "Designed and implemented an ETL pipeline for processing sales data, using Python, Pandas, and SQL to extract data from multiple sources, transform it for analysis, and load it into a data warehouse.",
+      image: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tags: ["Python", "ETL", "Data Engineering", "SQL", "Pandas"]
+    },
+    {
+      title: "Movie Streaming ETL",
+      category: "data",
+      subCategory: "pipeline",
+      description: "Built a scalable ETL pipeline for a movie streaming platform that processes user behavior data, content metadata, and viewing statistics to generate insights for content recommendation algorithms.",
+      image: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tags: ["Python", "Apache Airflow", "ETL", "Big Data", "Analytics"]
+    },
+    {
+      title: "Voting Application",
       category: "development",
-      description: "Implemented custom Salesforce applications and automated workflows to optimize business processes, resulting in 20% improvement in efficiency and 30% reduction in system downtime.",
-      image: "https://images.pexels.com/photos/5473337/pexels-photo-5473337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      tags: ["Salesforce", "Automation", "JavaScript", "Integration"]
+      subCategory: "frontend",
+      description: "Developed a secure blockchain-based voting application using React, TypeScript, and Vite that ensures transparent and tamper-proof election processes with real-time result tracking.",
+      image: "https://images.pexels.com/photos/1550337/pexels-photo-1550337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tags: ["React", "TypeScript", "Vite", "Blockchain", "Web3.js"]
+    },
+    {
+      title: "TDL Manager",
+      category: "development",
+      subCategory: "frontend",
+      description: "Created a decentralized task management application built with React, TypeScript, and Vite that uses blockchain technology to provide verifiable task completion and secure data storage.",
+      image: "https://images.pexels.com/photos/3243/pen-calendar-to-do-checklist.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tags: ["React", "TypeScript", "Vite", "Blockchain", "Smart Contracts"]
+    },
+    {
+      title: "Multiplayer Snake Game",
+      category: "development",
+      subCategory: "fullstack",
+      description: "Built an interactive multiplayer snake game using TypeScript, React, JavaScript, HTML, and CSS on the frontend with Supabase for real-time backend services, user authentication, and leaderboards.",
+      image: "https://images.pexels.com/photos/278918/pexels-photo-278918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tags: ["TypeScript", "React", "JavaScript", "Supabase", "Real-time", "Multiplayer"]
     }
   ];
 
-  const filteredProjects = filter === 'all' 
+  // Filter by main category
+  const categoryFilteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.category === filter);
+  
+  // Apply subcategory filter if applicable
+  const filteredProjects = subFilter === 'all'
+    ? categoryFilteredProjects
+    : categoryFilteredProjects.filter(project => project.subCategory === subFilter);
 
   const categories = [
     { id: 'all', name: 'All Projects' },
@@ -53,6 +94,49 @@ const Projects: React.FC = () => {
     { id: 'data', name: 'Data Analytics' },
     { id: 'development', name: 'Development' }
   ];
+
+  // Subcategories for each main category
+  const subcategories = {
+    data: [
+      { id: 'all', name: 'All Data Analytics' },
+      { id: 'pipeline', name: 'Data Pipelines' }
+    ],
+    development: [
+      { id: 'all', name: 'All Development' },
+      { id: 'frontend', name: 'Frontend' },
+      { id: 'fullstack', name: 'Full Stack' }
+    ]
+  };
+
+  // Handle main category change
+  const handleCategoryChange = (categoryId: string) => {
+    setFilter(categoryId);
+    setSubFilter('all'); // Reset subcategory filter when changing main category
+  };
+
+  // Render subcategory filters if applicable for the selected main category
+  const renderSubcategoryFilters = () => {
+    if (filter === 'data' || filter === 'development') {
+      return (
+        <div className="flex flex-wrap justify-center gap-4 mt-4">
+          {subcategories[filter as keyof typeof subcategories].map(subcat => (
+            <button
+              key={subcat.id}
+              onClick={() => setSubFilter(subcat.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                subFilter === subcat.id
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+              }`}
+            >
+              {subcat.name}
+            </button>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <section id="projects" className="py-20 bg-gray-900">
@@ -65,7 +149,7 @@ const Projects: React.FC = () => {
             {categories.map(category => (
               <button
                 key={category.id}
-                onClick={() => setFilter(category.id)}
+                onClick={() => handleCategoryChange(category.id)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   filter === category.id
                     ? 'bg-blue-600 text-white'
@@ -76,6 +160,8 @@ const Projects: React.FC = () => {
               </button>
             ))}
           </div>
+          
+          {renderSubcategoryFilters()}
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
