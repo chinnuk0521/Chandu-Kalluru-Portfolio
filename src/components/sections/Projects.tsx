@@ -37,6 +37,20 @@ const Projects: React.FC = () => {
       image: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       tags: ["Power BI", "Data Modeling", "Predictive Analytics"]
     },
+    {
+      title: "Diversity & Inclusion Dashboard",
+      category: "data-bi",
+      description: "Created comprehensive Power BI visualizations to track diversity metrics across the organization, providing insights into hiring practices, promotion rates, and retention across different demographic groups.",
+      image: "https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tags: ["Power BI", "HR Analytics", "D&I Metrics", "Data Visualization"]
+    },
+    {
+      title: "HR Analytics Platform",
+      category: "data-bi",
+      description: "Designed an interactive HR analytics dashboard that highlights employee performance, turnover trends, recruitment metrics, and workforce planning insights to support data-driven HR decision making.",
+      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      tags: ["Power BI", "HR Analytics", "Workforce Planning", "Predictive Modeling"]
+    },
     
     // Data Analytics - ETL Pipelines category
     {
